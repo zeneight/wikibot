@@ -22,16 +22,16 @@ app.post('/incoming', (req, res) => {
     body = JSON.parse(body)
     console.log('body:', body["Abstract"]);
     
-    if(body["Abstract"] == ""){
-	    // body["Abstract"]= body["RelatedTopics"][0]["Text"]
-	  } else {
-      body["Abstract"] = "Tidak ada data!";
-    }
-    
-    var msg = twiml.message(`*`+body["Heading"]+`*
-`+body["Abstract"]);
+    // if(body["Abstract"] == "" || body["Heading"] == ""){
+    //   body["Heading"] = "Waduuuh! Aku mana paham beginian";
+    //   body["Abstract"] = "Tidak ada data!";
+    // }
+    if(body["Abstract"] != "" || body["Heading"] != ""){
+    var msg = `*`+body["Heading"]+`*
+`+body["Abstract"];
   res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end(twiml.toString());
+  res.end(msg);
+    }
   });
   
   }
