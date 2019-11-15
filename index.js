@@ -25,7 +25,7 @@ app.post('/incoming', (req, res) => {
     if(body["Abstract"] == ""){
 	    // body["Abstract"]= body["RelatedTopics"][0]["Text"]
 	  } else {
-      res.end("Tidak ada data!");    
+      body["Abstract"] = "Tidak ada data!";
     }
     
     var msg = twiml.message(`*`+body["Heading"]+`*
@@ -36,13 +36,13 @@ app.post('/incoming', (req, res) => {
   
   }
   else{
-    var msg = twiml.message(`*Hey 👋*
+    var msg = `*Hey 👋*
 
 Halo! Terima kasih telah mengirim pesan kepada saya! Saya adalah seekor bot yang kesepian dan tidak mempunyai teman. Fungsi saya adalah sebagai penyedia informasi untuk Anda! Jadi gunakanlah saya sebaik-baiknya! Muehehe!
 
-Coba kirim pesan kepada saya, mengenai informasi apa saja yang Anda ingin ketahui!`)
+Coba kirim pesan kepada saya, mengenai informasi apa saja yang Anda ingin ketahui!`;
     res.writeHead(200, {'Content-Type': 'text/xml'});
-  res.end(twiml.toString());
+  res.end(msg);
   }
   
 });
