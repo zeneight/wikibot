@@ -23,8 +23,10 @@ app.post('/incoming', (req, res) => {
     console.log('body:', body["Abstract"]);
     
     if(body["Abstract"] == ""){
-	    body["Abstract"]= body["RelatedTopics"][0]["Text"]
-	  }
+	    // body["Abstract"]= body["RelatedTopics"][0]["Text"]
+	  } else {
+      res.end("Tidak ada data!");    
+    }
     
     var msg = twiml.message(`*`+body["Heading"]+`*
 `+body["Abstract"]);
